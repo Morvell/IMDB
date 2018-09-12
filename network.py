@@ -8,7 +8,7 @@ from keras.preprocessing import sequence
 # Устанавливаем seed для повторяемости результатов
 np.random.seed(42)
 # Максимальное количество слов (по частоте использования)
-max_features = 5000
+max_features = 88000
 # Максимальная длина рецензии в словах
 maxlen = 80
 
@@ -40,6 +40,7 @@ model.fit(X_train, y_train, batch_size=64, epochs=7,
 # Проверяем качество обучения на тестовых данных
 scores = model.evaluate(X_test, y_test,
                         batch_size=64)
+
 print("Точность на тестовых данных: %.2f%%" % (scores[1] * 100))
 
 model_json = model.to_json()
