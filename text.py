@@ -20,7 +20,9 @@ if __name__ == '__main__':
     with open("text.txt", "r") as file:
         text = file.read()
     words = text_to_word_sequence(text)
-    test = np.array([word_index[word] if word in word_index and word_index[word] < 88000 else 0 for word in words])
+    test = np.array([word_index[word] if word in word_index and word_index[
+                                                                    word] < 88000 else 0
+                     for word in words])
 
     # Копмилируем модель
     model.compile(loss='binary_crossentropy',
@@ -31,14 +33,13 @@ if __name__ == '__main__':
     array.append(test)
     a = model.predict(array)
 
-    i = np.around(a[0])[0]
+    i = sum(a) / len(a)
+
+    i = np.around(list(i))[0]
 
     if i:
         result = "положительна"
     else:
         result = "отрицательна"
-
-    if 0.4 <= a[0] <= 0.6:
-        result = "нейтральна"
 
     print("Данная рецензия - " + result)
